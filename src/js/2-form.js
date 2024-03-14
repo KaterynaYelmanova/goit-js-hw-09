@@ -6,15 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const formDataKey = 'feedback-form-state';
   let formData = JSON.parse(localStorage.getItem(formDataKey)) || {};
 
-  if (formData.email) {
+  if (formData.email !== undefined && formData.email.trim() !== '') {
     emailInput.value = formData.email.trim();
   }
-  if (formData.message) {
+  if (formData.message !== undefined && formData.message.trim() !== '') {
     messageInput.value = formData.message.trim();
   }
 
   form.addEventListener('input', event => {
-    formData = JSON.parse(localStorage.getItem(formDataKey)) || {};
     if (event.target === emailInput) {
       formData.email = emailInput.value.trim();
     } else if (event.target === messageInput) {
